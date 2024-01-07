@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd-part apps
     "rest_framework",
+    "corsheaders",
     # Local,
     "accounts.apps.AccountsConfig",
     "posts.apps.PostsConfig",
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -58,9 +60,18 @@ ROOT_URLCONF = "django_project.urls"
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.AllowAny",
+        "rest_framework.permissions.IsAuthenticated",
     ],
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "https://localhost:3000",
+    "https://localhost:8000",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost:3000",
+]
 
 TEMPLATES = [
     {

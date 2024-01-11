@@ -11,7 +11,7 @@ from .serializers import PostSerializer, UserSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthorOrReadOnly)
+    permission_classes = [IsAuthorOrReadOnly]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
